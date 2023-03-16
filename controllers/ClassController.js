@@ -1,4 +1,4 @@
-const { Class } = require('../models')
+const { Class, Student } = require('../models')
 
 const CreateClass = async (req, res) => {
   try {
@@ -23,6 +23,23 @@ const GetClassById = async (req, res) => {
   try {
     const classId = parseInt(req.params.id)
     const singleClass = await Class.findByPk(classId)
+    res.send(singleClass)
+  } catch (error) {
+    throw error
+  }
+}
+
+const GetStudentsByClass = async (req, res) => {
+  try {
+    const classId = parseInt(req.params.id)
+    const singleClass = await Student.findAll({
+      include: [
+        {
+          model: Class,
+          attributes: ['id']
+        },
+      ]
+    })
     res.send(singleClass)
   } catch (error) {
     throw error
@@ -61,6 +78,7 @@ module.exports = {
   CreateClass,
   GetClasses,
   GetClassById,
+  GetStudentsByClass,
   UpdateClass,
   DeleteClass
 }
