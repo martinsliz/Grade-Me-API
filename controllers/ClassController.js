@@ -1,4 +1,4 @@
-const { Class, Student } = require('../models')
+const { Class, Student, ClassList } = require('../models')
 
 const CreateClass = async (req, res) => {
   try {
@@ -32,17 +32,24 @@ const GetClassById = async (req, res) => {
 const GetStudentsByClass = async (req, res) => {
   try {
     const classId = parseInt(req.params.id)
-    const singleClass = await Student.findAll({
+    const classList = await Class.findOne({
+      where: {
+        id: classId
+      },
       include: [
         {
-          model: Class,
-          attributes: ['id']
-        },
+          model: Student,
+          as: 'students',
+          attributes: ['id', 'name', 'email', 'gpa'],
+          through: { attributes: [] }
+        }
       ]
     })
-    res.send(singleClass)
+    console.log(classList)
+    res.send(classList.students)
   } catch (error) {
-    throw error
+    console.log(error)
+    res.status(500).send(error.message)
   }
 }
 
