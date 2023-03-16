@@ -1,8 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const logger = require('morgan')
-const StudentRouter = require('./routes/StudentRouter')
-const ClassRouter = require('./routes/ClassRouter')
+const AppRouter = require('./routes/AppRouter')
 
 const app = express()
 
@@ -13,9 +12,6 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/api', AppRouter)
-app.use('/student', StudentRouter)
-app.use('/class', ClassRouter)
-
 app.get('/', (req, res) => {
   res.send('This is the base path!')
 })

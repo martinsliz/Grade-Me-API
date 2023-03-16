@@ -18,9 +18,6 @@ module.exports = {
       gpa: {
         type: Sequelize.INTEGER
       },
-      classId: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

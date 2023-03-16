@@ -3,16 +3,20 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Student extends Model {
     static associate(models) {
-      Student.hasMany(models.Class, { foreignKey: 'classId' })
+      Student.belongsToMany(models.Class, {
+        as: 'classes',
+        through: models.ClassList,
+        foreignKey: 'studentId'
+      })
     }
   }
   Student.init(
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
-      gpa: DataTypes.INTEGER,
-      classId: DataTypes.INTEGER
+      gpa: DataTypes.INTEGER
     },
+
     {
       sequelize,
       modelName: 'Student',

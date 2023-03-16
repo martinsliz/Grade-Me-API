@@ -19,6 +19,16 @@ const GetClasses = async (req, res) => {
   }
 }
 
+const GetClassById = async (req, res) => {
+  try {
+    const classId = parseInt(req.params.id)
+    const singleClass = await Class.findByPk(classId)
+    res.send(singleClass)
+  } catch (error) {
+    throw error
+  }
+}
+
 const UpdateClass = async (req, res) => {
   console.log('update')
   try {
@@ -50,6 +60,7 @@ const DeleteClass = async (req, res) => {
 module.exports = {
   CreateClass,
   GetClasses,
+  GetClassById,
   UpdateClass,
   DeleteClass
 }
