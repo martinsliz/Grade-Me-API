@@ -4,13 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "logger": "^0.0.1",
+    "mongoose": "^7.0.2",
+    "morgan": "^1.10.0",
+    "node": "^19.8.1",
+    "nodemon": "^2.0.21",
     "pg": "^8.10.0",
+    "react-scripts": "^5.0.1",
     "sequelize": "^6.29.3"
   }
 }
