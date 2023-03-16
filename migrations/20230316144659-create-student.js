@@ -19,7 +19,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       classId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'classes',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
