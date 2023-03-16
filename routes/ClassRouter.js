@@ -1,7 +1,7 @@
 const Router = require('express').Router()
 const controller = require('../controllers/ClassController')
 
-Router.post('/create-class', controller.CreateClass)
+Router.post('/', controller.CreateClass)
 Router.get('/get-classes', controller.GetClasses)
 
 Router.delete('/delete-class', controller.DeleteClass)
