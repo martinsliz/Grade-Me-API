@@ -27,6 +27,24 @@ const CreateClassList = async (req, res) => {
   }
 }
 
+const AssignClassToStudent = async (req, res) => {
+  try {
+    const studentId = parseInt(req.params.student_id)
+    const classId = parseInt(req.params.class_id)
+    // const classListBody = {
+    //   studentId,
+    //   classId
+    // }
+    const classList = await ClassList.create({
+      classId,
+      studentId
+    })
+    res.send(classList)
+  } catch (error) {
+    throw error
+  }
+}
+
 const DeleteClassList = async (req, res) => {
   try {
     let studentId = parseInt(req.params.student_id)
@@ -45,5 +63,6 @@ const DeleteClassList = async (req, res) => {
 module.exports = {
   GetClassListById,
   CreateClassList,
+  AssignClassToStudent,
   DeleteClassList
 }
