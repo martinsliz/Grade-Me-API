@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "sarahmaher",
+    "password": null,
+    "database": "database_GradeMe",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "sarahmaher",
+    "password": null,
+    "database": "database_GradeMe",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "sarahmaher",
+    "password": null,
+    "database": "database_Grademe",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
