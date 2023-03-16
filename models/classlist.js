@@ -11,26 +11,26 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  ClassList.init({
-    classId: {
-      type: DataTypes.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'students',
-        key: 'id'
+  ClassList.init(
+    {
+      classId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'classes',
+          key: 'id'
+        }
+      },
+      studentId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'students',
+          key: 'id'
+        }
       }
     },
-    studentId: {
-      type: DataTypes.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'classes',
-        key: 'id'
-      }
-    },
-    sequelize,
-    modelName: 'ClassList',
-    tableName: 'class_lists'
-  })
+    { sequelize, modelName: 'ClassList', tableName: 'class_lists' }
+  )
   return ClassList
 }

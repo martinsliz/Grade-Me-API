@@ -1,8 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const logger = require('morgan')
-const StudentRouter = require('./routes/StudentRouter')
-const ClassRouter = require('./routes/ClassRouter')
 const AppRouter = require('./routes/AppRouter')
 
 const app = express()

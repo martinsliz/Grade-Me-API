@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'students',
         through: models.ClassList,
         foreignKey: 'classId'
-      }) // define association here
+      })
     }
   }
   Class.init(
