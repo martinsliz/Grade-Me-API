@@ -1,34 +1,48 @@
 # Grade-Me
 
+## **3/16/2023**
+
 ### By
 
-- Liz Martins [Github](https://github.com/martinsliz) || [Linkedin](https://www.linkedin.com/in/elizmartins/)
+- Liz Martins [Github](https://github.com/martinsliz)|| [Linkedin](https://www.linkedin.com/in/elizmartins/)
 
-###[Sarah Maher](https://www.linkedin.com/in/sarah-maher-8a6865255)
+- Tina Yang [GitHub](https://github.com/tinayang15) || [Linkedin](https://www.linkedin.com/in/yang-tina/)
 
-Tina Yang
+- [Sarah Maher](https://www.linkedin.com/in/sarah-maher-8a6865255/)
 
-## **_Getting Started:_**
+#### [Front End Repository](https://github.com/martinsliz/Grade-Me) | [Back End Repository ](https://github.com/martinsliz/Grade-Me-API)
 
-## **_Technologies Used:_**
+---
 
-- PostgreSQL
+## **_Description_**
+
+#### Week ten project at General Assembly.
+
+#### Grade-Me is a full-stack application that allows a user to view a list of students and their classes they are enrolled in. The viewable student information will include their name, email, classes, and overall GPA
+
+####
+
+---
+
+### **_*Technologies Used*_**
+
+- Postgres
 - Sequelize
 - Express
-- Vue
-- JavaScript
+- React
 - Node
-- HTML
-- CSS
+- Vue
 
-## **_Final Project Photos:_**
+---
 
-![Image]()
+#### ![ERD](https://i.imgur.com/ttIYSwI.png)
 
-## **_Future Updates:_**
+#### ![CHD](https://i.imgur.com/gdECF6S.png)
 
-- [ ]
+### **_Screenshots_**
 
-## **_Credits:_**
+---
 
-[W3 Schools](https://www.w3schools.com/css/) || [MDN](https://developer.mozilla.org/en-US/)
+---
+
+## **Credits**
