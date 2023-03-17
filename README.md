@@ -16,7 +16,7 @@
 
 ## **_Description_**
 
-#### Week ten project at General Assembly.
+#### Week Ten Project at General Assembly.
 
 #### Grade-Me is a full-stack application that allows a user to view a list of students and their classes they are enrolled in. The viewable student information will include their name, email, classes, and overall GPA
 
