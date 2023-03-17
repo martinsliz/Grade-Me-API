@@ -13,9 +13,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      grade: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
