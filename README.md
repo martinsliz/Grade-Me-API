@@ -8,7 +8,7 @@
 
 - Tina Yang [GitHub](https://github.com/tinayang15) || [Linkedin](https://www.linkedin.com/in/yang-tina/)
 
-- [Sarah Maher](https://www.linkedin.com/in/sarah-maher-8a6865255/)
+- Sarah Maher [GitHub](https://github.com/mahers12) || [Linkedin](https://www.linkedin.com/in/sarah-maher-8a6865255/)
 
 #### [Front End Repository](https://github.com/martinsliz/Grade-Me) | [Back End Repository ](https://github.com/martinsliz/Grade-Me-API)
 
