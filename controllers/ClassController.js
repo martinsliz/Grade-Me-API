@@ -9,6 +9,36 @@ const CreateClass = async (req, res) => {
     throw error
   }
 }
+const AssignGrade = async (req, res) => {
+  try {
+    const classId = parseInt(req.params.class_id)
+    const studentId = parseInt(req.params.student_id)
+    const grade = req.body.grade
+
+    const classInstance = await Class.findByPk(classId)
+    const studentInstance = await Student.findByPk(studentId)
+    if (!classInstance || !studentInstance) {
+      return res.status(404).send('Class or student not found')
+    }
+
+    const classListEntry = await ClassList.findOne({
+      where: {
+        classId: classId,
+        studentId: studentId
+      }
+    })
+    if (!classListEntry) {
+      return res.status(404).send('Class list entry not found')
+    }
+    classInstance.grade = grade
+    await classInstance.save()
+
+    res.send(classInstance)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message)
+  }
+}
 
 const GetClasses = async (req, res) => {
   try {
@@ -87,5 +117,6 @@ module.exports = {
   GetClassById,
   GetStudentsByClass,
   UpdateClass,
-  DeleteClass
+  DeleteClass,
+  AssignGrade
 }
