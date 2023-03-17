@@ -35,9 +35,12 @@
 
 ---
 
-#### ![ERD](https://i.imgur.com/ttIYSwI.png)
+#### Entity Relationship Diagram: 
+![ERD](https://i.imgur.com/ttIYSwI.png)
 
-#### ![CHD](https://i.imgur.com/gdECF6S.png)
+#### Component Hierarchy Diagram:
+
+![CHD](https://i.imgur.com/gdECF6S.png)
 
 ### **_Screenshots_**
 
