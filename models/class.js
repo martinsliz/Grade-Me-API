@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   Class.init(
     {
       name: DataTypes.STRING,
-      grade: DataTypes.STRING
     },
     {
       sequelize,

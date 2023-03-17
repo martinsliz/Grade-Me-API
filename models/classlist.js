@@ -7,9 +7,13 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-    }
+    // static associate(models) {
+    //   // define association here
+    //   ClassList.belongsToMany(models.Student, {
+    //     as: 'classlists',
+    //     through: models.ClassList,
+    //   })
+    // }
   }
   ClassList.init(
     {
@@ -28,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
           model: 'students',
           key: 'id'
         }
-      }
+      },
+      grade: DataTypes.STRING
     },
     { sequelize, modelName: 'ClassList', tableName: 'class_lists' }
   )

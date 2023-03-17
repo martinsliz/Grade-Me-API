@@ -8,13 +8,16 @@ module.exports = (sequelize, DataTypes) => {
         through: models.ClassList,
         foreignKey: 'studentId'
       })
+      // Student.belongsToMany(models.ClassList, {
+      //   as: 'classlists',
+      //   through: models.ClassList
+      // })
     }
   }
   Student.init(
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
-      gpa: DataTypes.INTEGER
     },
 
     {

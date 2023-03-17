@@ -9,37 +9,107 @@ const CreateClass = async (req, res) => {
     throw error
   }
 }
-const AssignGrade = async (req, res) => {
+// const getGradeStudentInfo = async (req, res) => {
+//   try {
+//     const studentId = parseInt(req.params.studentId);
+//     const classId = parseInt(req.params.classId);
+//     const classInfo = await Class.findByPk(classId)
+//     const gradeInfo = await ClassList.findOne({
+//       where: { studentId: studentId, classId: classId },
+//       attributes: ['grade'],
+//     });
+//     const studentInfo = await Student.findByPk(studentId)
+//     if (!studentInfo) {
+//       return res.status(404).send({ message: 'Student info not found.' });
+//     }
+
+//     res.send({ classInfo, gradeInfo, studentInfo });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ message: 'Internal server error.' });
+//   }
+// };
+const getCoursesForStudent = async (req, res) => {
   try {
     const classId = parseInt(req.params.class_id)
     const studentId = parseInt(req.params.student_id)
-    const grade = req.body.grade
-
-    const classInstance = await Class.findByPk(classId)
-    const studentInstance = await Student.findByPk(studentId)
-    if (!classInstance || !studentInstance) {
-      return res.status(404).send('Class or student not found')
+    const classe = await Class.findByPk(classId)
+    const student = await Student.findByPk(studentId)
+    if (!student) {
+      return res.status(404).send('Student not found')
     }
 
-    const classListEntry = await ClassList.findOne({
-      where: {
-        classId: classId,
-        studentId: studentId
-      }
+    const classes = await Class.findAll({
+      include: [
+        {
+          model: ClassList,
+          where: {
+            classId: classId
+          }
+        }
+      ]
     })
-    if (!classListEntry) {
-      return res.status(404).send('Class list entry not found')
-    }
-    classInstance.grade = grade
-    await classInstance.save()
 
-    res.send(classInstance)
+    res.send(classes)
   } catch (error) {
     console.log(error)
     res.status(500).send(error.message)
   }
 }
 
+const GetStudentsWithGradesByClass = async (req, res) => {
+  try {
+    const classId = parseInt(req.params.id)
+    const singleClass = await Class.findByPk(classId, {
+      include: [
+        {
+          model: Student,
+          as: 'students',
+          attributes: ['id', 'name', 'email'],
+          through: { attributes: [] }
+        }
+      ]
+    })
+    const studentsWithGrades = singleClass.students.map((student) => ({
+      id: student.id,
+      name: student.name,
+      email: student.email,
+      grade: singleClass.grade
+    }))
+    res.send(studentsWithGrades)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message)
+  }
+}
+
+const GetStudentsByClass = async (req, res) => {
+  try {
+    const classId = parseInt(req.params.id)
+    const classList = await Class.findOne({
+      where: {
+        id: classId
+      },
+      include: [
+        {
+          model: Student,
+          as: 'students',
+          attributes: ['id', 'name', 'email'],
+          through: {
+            model: ClassList,
+            as: 'classlists',
+            attributes: []
+          }
+        }
+      ]
+    })
+    console.log(classList)
+    res.send(classList.students)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message)
+  }
+}
 const GetClasses = async (req, res) => {
   try {
     const classes = await Class.findAll()
@@ -56,30 +126,6 @@ const GetClassById = async (req, res) => {
     res.send(singleClass)
   } catch (error) {
     throw error
-  }
-}
-
-const GetStudentsByClass = async (req, res) => {
-  try {
-    const classId = parseInt(req.params.id)
-    const classList = await Class.findOne({
-      where: {
-        id: classId
-      },
-      include: [
-        {
-          model: Student,
-          as: 'students',
-          attributes: ['id', 'name', 'email', 'gpa'],
-          through: { attributes: [] }
-        }
-      ]
-    })
-    console.log(classList)
-    res.send(classList.students)
-  } catch (error) {
-    console.log(error)
-    res.status(500).send(error.message)
   }
 }
 
@@ -118,5 +164,7 @@ module.exports = {
   GetStudentsByClass,
   UpdateClass,
   DeleteClass,
-  AssignGrade
+  GetStudentsByClass,
+  GetStudentsWithGradesByClass,
+  getCoursesForStudent
 }

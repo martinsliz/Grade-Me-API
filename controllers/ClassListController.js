@@ -1,4 +1,4 @@
-const { ClassList } = require('../models')
+const { ClassList, Student, Class } = require('../models')
 
 const GetClassListById = async (req, res) => {
   try {
@@ -9,6 +9,21 @@ const GetClassListById = async (req, res) => {
     res.send(classList)
   } catch (error) {
     throw error
+  }
+}
+const AssignGrade = async (req, res) => {
+  try {
+    const classlist = await ClassList.update(
+      { ...req.body },
+      {
+        where: { studentId: +req.params.studentId, classId: +req.params.classId },
+        returning: true,
+      }
+    );
+    console.log(classlist)
+    res.send(classlist);
+  } catch (error) {
+    throw error;
   }
 }
 
@@ -31,10 +46,6 @@ const AssignClassToStudent = async (req, res) => {
   try {
     const studentId = parseInt(req.params.student_id)
     const classId = parseInt(req.params.class_id)
-    // const classListBody = {
-    //   studentId,
-    //   classId
-    // }
     const classList = await ClassList.create({
       classId,
       studentId
@@ -44,6 +55,44 @@ const AssignClassToStudent = async (req, res) => {
     throw error
   }
 }
+const getStudentInfo = async (req, res) => {
+  try {
+    const studentId = parseInt(req.params.studentId);
+    const classId = parseInt(req.params.classId);
+    const gradeInfo = await ClassList.findOne({
+      where: { studentId: studentId, classId: classId },
+      attributes: ['grade'],
+    });
+    const studentInfo = await Student.findByPk(studentId)
+    if (!studentInfo) {
+      return res.status(404).send({ message: 'Student info not found.' });
+    }
+
+    res.send({ gradeInfo, studentInfo });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Internal server error.' });
+  }
+};
+
+const getStudentGrade = async (req, res) => {
+  try {
+    const studentId = parseInt(req.params.studentId);
+    const studentGrade = await ClassList.findAll({
+      where: { studentId: studentId },
+      // attributes: ['grade'],
+    });
+
+    if (!studentGrade) {
+      return res.status(404).send({ message: 'Student grades not found.' });
+    }
+
+    res.send(studentGrade);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Internal server error.' });
+  }
+};
 
 const DeleteClassList = async (req, res) => {
   try {
@@ -64,5 +113,8 @@ module.exports = {
   GetClassListById,
   CreateClassList,
   AssignClassToStudent,
-  DeleteClassList
+  DeleteClassList,
+  AssignGrade,
+  getStudentInfo,
+  getStudentGrade
 }
